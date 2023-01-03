@@ -1,12 +1,5 @@
 
 terraform {
-
-  backend"azurerm" {
-    resource_group_name   = "othukeo-infra"
-    storage_account_name  = "othukeotstate"
-    container_name        = "tstate"
-    key                   = "wOqFUr6e4BKy+Wq4AAn2jeMQk+J9kLrJtoYQ5Ty+Ezn64ul2srFGoHtUfVYM22iJAHl7pzWlMb0L+AStr7Bo7w=="
-}
   required_providers {
     azurerm = {
       # Specify what version of the provider we are going to utilise
