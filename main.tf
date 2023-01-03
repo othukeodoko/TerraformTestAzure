@@ -1,22 +1,23 @@
-terraform {
-  backend "azurerm" {
-    resource_group_name  = "othukeo-infra"
-    storage_account_name = "othukeotstate"
-    container_name       = "tstate"
-    key                  = "77Q4LUB5o9wRdbPYDt+0kGZP+L8Sj9E/FNXg7lZBQS5z3mLod5cyan4wA19CR1SmlqIRUFQfhuQrPVaGzNhjGw=="
-  }
 
+terraform {
+
+  backend"azurerm" {
+    resource_group_name   = "othukeo-infra"
+    storage_account_name  = "othukeotstate"
+    container_name        = "tstate"
+    key                   = "wOqFUr6e4BKy+Wq4AAn2jeMQk+J9kLrJtoYQ5Ty+Ezn64ul2srFGoHtUfVYM22iJAHl7pzWlMb0L+AStr7Bo7w=="
+}
   required_providers {
     azurerm = {
       # Specify what version of the provider we are going to utilise
-      source  = "hashicorp/azurerm"
+      source = "hashicorp/azurerm"
       version = ">= 2.4.1"
     }
   }
 }
 provider "azurerm" {
   features {
-    key_vault {
+      key_vault {
       purge_soft_delete_on_destroy = true
     }
   }
@@ -39,7 +40,7 @@ resource "azurerm_subnet" "sn" {
   name                 = "VM"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = ["10.0.1.0/24"]
+  address_prefixes       = ["10.0.1.0/24"]
 }
 # Create our Azure Storage Account - othukeosa
 resource "azurerm_storage_account" "othukeosa" {
@@ -49,7 +50,7 @@ resource "azurerm_storage_account" "othukeosa" {
   account_tier             = "Standard"
   account_replication_type = "LRS"
   tags = {
-    environment = "othukeoenv1"
+    environment = "othukeorox"
   }
 }
 # Create our vNIC for our VM and assign it to our Virtual Machines Subnet
@@ -57,7 +58,7 @@ resource "azurerm_network_interface" "vmnic" {
   name                = "othukeovm01nic"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-
+ 
   ip_configuration {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.sn.id
@@ -84,9 +85,9 @@ resource "azurerm_virtual_machine" "othukeovm01" {
     managed_disk_type = "Standard_LRS"
   }
   os_profile {
-    computer_name  = "othukeovm01"
-    admin_username = "othukeo"
-    admin_password = "Password123$"
+    computer_name      = "othukeovm01"
+    admin_username     = "othukeo"
+    admin_password     = "Password123$"
   }
   os_profile_windows_config {
   }

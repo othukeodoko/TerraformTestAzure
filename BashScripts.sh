@@ -1,7 +1,7 @@
 #!/bin/bash
 #COnnect and set Subscription Context in Azure
-az login
-az account set --subscription "Azure subscription 1"
+#az login
+#az account set --subscription "Azure subscription 1"
 
 
 #Set Variables for Storage account and Key Vault that support the Terraform implementation
